@@ -3,8 +3,15 @@ const Workout = require("../models/workout.js");
 
 
 router.get("/api/workouts", (req, res) => {
-  Workout.find({})
-    .then(dbWorkout => {
+  Workout.aggregate([
+    {
+      $addFields:
+      {
+        totalDuration:
+          { $sum: "$exercises.duration" }
+      }
+    }])
+    .then(dbWorkout => { 
       res.json(dbWorkout);
     })
     .catch(err => {
@@ -23,10 +30,7 @@ router.post("/api/workouts", (req, res) => {
 });
 
 router.put("/api/workouts/:id", (req, res) => {
-  Workout.findOneAndUpdate(
-    {
-      _id: req.params.id
-    },
+  Workout.findByIdAndUpdate(req.params.id, 
     {
       $push: {
         exercises: req.body,
@@ -44,11 +48,17 @@ router.put("/api/workouts/:id", (req, res) => {
 });
 
 router.get("/api/workouts/range", (req, res) => {
-  console.log("GET REQ");
-  Workout.find({})
+  Workout.aggregate([
+    {
+      $addFields:
+      {
+        totalDuration:
+          { $sum: "$exercises.duration" }
+      }
+    }])
     .sort({ day: -1 })
     .limit(7)
-    .then(dbWorkout => {
+    .then(dbWorkout => { 
       console.log(dbWorkout);
       res.json(dbWorkout);
     })
