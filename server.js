@@ -16,8 +16,9 @@ app.use('/', router);
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessTracker", {
   useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true 
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
 });
 
 // routes
