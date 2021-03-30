@@ -31,13 +31,9 @@ const workoutSchema = new Schema({
             type: Number,
         },    
     }],
-
-    totalDuration: Number,
-
 });
 
 workoutSchema.methods.addDuration = function() {
-    this.totalDuration = 0;
     for (i of this.exercises) {
         this.totalDuration = this.totalDuration + i.duration;
     }
