@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const Workout = require("../models/workout.js");
-const mongoose = require("mongoose");
 
 
 router.get("/api/workouts", (req, res) => {
@@ -13,11 +12,9 @@ router.get("/api/workouts", (req, res) => {
     });
 });
 
-router.post("/api/workouts", ({ body }, res) => {
-  console.log("POST");
-  Workout.create(body)
+router.post("/api/workouts", (req, res) => {
+  Workout.create({})
     .then(dbWorkout => {
-      console.log(dbWorkout);
       res.json(dbWorkout);
     })
     .catch(err => {
