@@ -10,4 +10,4 @@ Node.js, Express, MongoDB, Mongoose, Heroku, HTML, CSS, Javascript
 [Fitness Tracker](https://calm-island-07024.herokuapp.com/)
 
 ## Screenshot
-![Screenshot]()
+![Screenshot](https://github.com/cawleygl/Fitness-Tracker/blob/main/Assets/Screen%20Shot%202021-03-30%20at%205.00.23%20PM.png?raw=true)
