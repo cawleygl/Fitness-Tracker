@@ -1,5 +1,6 @@
 let mongoose = require("mongoose");
-let db = require("../models");
+let Workout = require("../models/workout.js");
+
 
 mongoose.connect("mongodb://localhost/fitnessTracker", {
   useNewUrlParser: true,
@@ -8,7 +9,7 @@ mongoose.connect("mongodb://localhost/fitnessTracker", {
 
 let workoutSeed = [
   {
-    day: new Date().setDate(new Date().getDate()-10),
+    day: new Date(new Date().setDate(new Date().getDate() - 10)),
     exercises: [
       {
         type: "resistance",
@@ -21,7 +22,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-9),
+    day: new Date(new Date().setDate(new Date().getDate() - 9)),
     exercises: [
       {
         type: "resistance",
@@ -34,7 +35,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-8),
+    day: new Date(new Date().setDate(new Date().getDate() - 8)),
     exercises: [
       {
         type: "resistance",
@@ -47,7 +48,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-7),
+    day: new Date(new Date().setDate(new Date().getDate() - 7)),
     exercises: [
       {
         type: "cardio",
@@ -58,7 +59,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-6),
+    day: new Date(new Date().setDate(new Date().getDate() - 6)),
     exercises: [
       {
         type: "resistance",
@@ -71,7 +72,7 @@ let workoutSeed = [
     ]
   },
   {
-    day: new Date().setDate(new Date().getDate()-5),
+    day: new Date(new Date().setDate(new Date().getDate() - 5)),
     exercises: [
       {
         type: "resistance",
@@ -124,8 +125,8 @@ let workoutSeed = [
   }
 ];
 
-db.Workout.deleteMany({})
-  .then(() => db.Workout.collection.insertMany(workoutSeed))
+Workout.deleteMany({})
+  .then(() => Workout.collection.insertMany(workoutSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
