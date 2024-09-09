@@ -4,6 +4,7 @@ var path = require('path');
 var router = express.Router();
 
 const PORT = process.env.PORT || 3000;
+const uri = process.env.MONGODB_URI || "mongodb://localhost/fitnessTracker";
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/', router);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessTracker", {
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
